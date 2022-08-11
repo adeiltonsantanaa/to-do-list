@@ -22,8 +22,7 @@ public class ToDoController {
 	
 	@Autowired
 	private ToDoService service;
-	
-	
+
 	
 	@GetMapping(path = "/teste")
 	public String teste() {

@@ -7,7 +7,6 @@ import java.util.Optional;
 
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import br.com.todolist.toDo.models.ToDoModel;
@@ -18,13 +17,15 @@ public class ToDoService {
 	
 	@Autowired
 	private ToDoRepository repToDo;
-	
+	@Autowired
+	private ToDoEnvioEmailService mail;
 	
 	public ToDoModel salvarTask(ToDoModel toDo) {
 		validaTask(toDo);
 		toDo.setDate(LocalDate.now());
+		String mensagem = "Task adicionada com sucesso: " + toDo; 
+		mail.sendMail(mensagem);
 		return repToDo.save(toDo);
-		
 	}
 	
 	
@@ -40,7 +41,6 @@ public class ToDoService {
 		return repToDo.findById(id);
 	}
 	
-	
 	public ToDoModel atualizaTask(ToDoModel toDo) {
 		if(toDo.getId() == null) {
 			throw new NullPointerException("O id não pode ser nulo!");
@@ -50,6 +50,8 @@ public class ToDoService {
 		toDo2.setTask(toDo.getTask());
 		toDo2.setDescricao(toDo.getDescricao());
 		repToDo.save(toDo2);
+		String mensagem = "Task atualizada com sucesso: " + toDo2;
+		mail.sendMail(mensagem);
 		return toDo2;
 		
 	}
@@ -60,13 +62,6 @@ public class ToDoService {
 		}
 		repToDo.deleteById(id);
 	}
-	
-	
-	
-	
-	
-	
-	
 	
 	public void validaTask(ToDoModel toDo) throws ServiceException {
 		List<String> erros = new ArrayList<>();

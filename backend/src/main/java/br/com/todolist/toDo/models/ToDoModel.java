@@ -84,7 +84,7 @@ public class ToDoModel {
 
 	@Override
 	public String toString() {
-		return "ToDoModel [id=" + id + ", date=" + date + ", task=" + task + ", descricao=" + descricao + "]";
+		return "ToDoModel [date=" + date + ", task=" + task + ", descricao=" + descricao + "]";
 	}
 	
 	
