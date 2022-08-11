@@ -1,11 +1,13 @@
 package br.com.todolist.toDo.services;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import br.com.todolist.toDo.models.ToDoModel;
@@ -20,20 +22,23 @@ public class ToDoService {
 	
 	public ToDoModel salvarTask(ToDoModel toDo) {
 		validaTask(toDo);
+		toDo.setDate(LocalDate.now());
 		return repToDo.save(toDo);
 		
 	}
+	
+	
 	public List<ToDoModel> todasTasks(){
 		return repToDo.findAll();
 	}
+	
+	
 	public Optional<ToDoModel> task(Long id) {
 		if(id == null) {
 			throw new NullPointerException("Id Incorreto");
 		}
 		return repToDo.findById(id);
 	}
-	
-	
 	
 	
 	public ToDoModel atualizaTask(ToDoModel toDo) {
@@ -47,6 +52,13 @@ public class ToDoService {
 		repToDo.save(toDo2);
 		return toDo2;
 		
+	}
+	
+	public void deletaTask(Long id) {
+		if(id == null) {
+			throw new NullPointerException("Id não pode ser nulo");
+		}
+		repToDo.deleteById(id);
 	}
 	
 	
