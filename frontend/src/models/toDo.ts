@@ -1,6 +1,6 @@
 export type toDo = {
     id:number
-	date:string
+	date:Date
 	task:string
 	descricao:string
 }

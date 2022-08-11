@@ -6,9 +6,10 @@ import { toDo } from '../../../models/toDo';
 
 type Props = {
   Desc: string;
+  Task: string;
 }
 
-function ModalDescricao({ Desc }: Props) {
+function ModalDescricao({ Desc, Task }: Props) {
 
   const [show, setShow] = useState(false);
 
@@ -24,12 +25,12 @@ function ModalDescricao({ Desc }: Props) {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Descrição</Modal.Title>
+          <Modal.Title>{Task}</Modal.Title>
         </Modal.Header>
             <Modal.Body>{Desc}</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            Fechar
           </Button>
         </Modal.Footer>
       </Modal>

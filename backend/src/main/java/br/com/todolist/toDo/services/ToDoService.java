@@ -41,11 +41,11 @@ public class ToDoService {
 		return repToDo.findById(id);
 	}
 	
-	public ToDoModel atualizaTask(ToDoModel toDo) {
-		if(toDo.getId() == null) {
+	public ToDoModel atualizaTask(Long id, ToDoModel toDo) {
+		if(id == null) {
 			throw new NullPointerException("O id não pode ser nulo!");
 		}
-		Optional<ToDoModel> atualizar = repToDo.findById(toDo.getId());
+		Optional<ToDoModel> atualizar = repToDo.findById(id);
 		ToDoModel toDo2 = atualizar.get();
 		toDo2.setTask(toDo.getTask());
 		toDo2.setDescricao(toDo.getDescricao());

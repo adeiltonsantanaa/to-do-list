@@ -42,9 +42,9 @@ public class ToDoController {
 	public ToDoModel salvar(@RequestBody ToDoModel toDo) {
 		return service.salvarTask(toDo);
 	}
-	@PutMapping(path = "/atualizar")
-	public ToDoModel atualizar(@RequestBody ToDoModel toDo) {
-		return service.atualizaTask(toDo);
+	@PutMapping(path = "/atualizar/{id}")
+	public ToDoModel atualizar(@PathVariable Long id, @RequestBody ToDoModel toDo) {
+		return service.atualizaTask(id, toDo);
 	}
 	@DeleteMapping(path = "/deletar/{id}")
 	public void deletar(@PathVariable Long id) {

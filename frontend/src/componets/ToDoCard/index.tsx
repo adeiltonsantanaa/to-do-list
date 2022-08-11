@@ -37,13 +37,13 @@ function ToDoCard() {
                         return (
                             <tr key={toDo.id}>
                                 <td className="show992">{toDo.id}</td>
-                                <td className="show576">{new Date(toDo.date).toLocaleDateString()}</td>
+                                <td className="show576">{new Date(toDo.date).toLocaleDateString('pt-BR', {timeZone: 'UTC'})}</td>
                                 <td>{toDo.task}</td>
-                                <td className="show992">{toDo.descricao}</td>
+                                <td className="show992">{toDo.descricao.length > 15 ? toDo.descricao.substring(0, 15) + "..." : toDo.descricao}</td>
                                 <td>
                                     <div className="to-do-red-btn-container">
-                                    <ModalDescricao Desc={toDo.descricao}/>
-                                        <ModalEditar />
+                                    <ModalDescricao Desc={toDo.descricao} Task={toDo.task}/>
+                                        <ModalEditar Id={toDo.id} Task={toDo.task} Desc={toDo.descricao} />
                                         <BtnExcluir toDoId={toDo.id} />
                                     </div>
                                 </td>
@@ -51,7 +51,6 @@ function ToDoCard() {
                         )
                     })}
                 </tbody>
-
             </table>
         </div>
     </div>
