@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { toDo } from '../../models/toDo';
 
+
 function ToDoCard() {
 
     const [toDo, setToDo] = useState<toDo[]>([]);
@@ -36,14 +37,14 @@ function ToDoCard() {
                         return (
                             <tr key={toDo.id}>
                                 <td className="show992">{toDo.id}</td>
-                                <td className="show576">{toDo.date}</td>
+                                <td className="show576">{new Date(toDo.date).toLocaleDateString()}</td>
                                 <td>{toDo.task}</td>
                                 <td className="show992">{toDo.descricao}</td>
                                 <td>
                                     <div className="to-do-red-btn-container">
-                                        <ModalDescricao />
+                                    <ModalDescricao Desc={toDo.descricao}/>
                                         <ModalEditar />
-                                        <BtnExcluir />
+                                        <BtnExcluir toDoId={toDo.id} />
                                     </div>
                                 </td>
                             </tr>

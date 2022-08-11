@@ -1,6 +1,4 @@
-import { useState } from 'react'
 import ToDoCard from './componets/ToDoCard'
-import ModalDescricao from './componets/Modais/ModalDescricao'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
