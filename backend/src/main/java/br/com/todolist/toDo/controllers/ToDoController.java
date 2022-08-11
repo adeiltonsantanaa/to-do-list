@@ -1,9 +1,11 @@
 package br.com.todolist.toDo.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,6 +33,11 @@ public class ToDoController {
 	public List<ToDoModel> tasks(){ 
 		return service.todasTasks();
 	}
+	@GetMapping(path = "/task/{id}")
+	public Optional<ToDoModel> task(@PathVariable Long id) {
+		return service.task(id);
+	}
+	
 	@PostMapping(path = "/salvar")
 	public ToDoModel salvar(@RequestBody ToDoModel toDo) {
 		return service.salvarTask(toDo);

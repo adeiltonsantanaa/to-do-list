@@ -26,6 +26,16 @@ public class ToDoService {
 	public List<ToDoModel> todasTasks(){
 		return repToDo.findAll();
 	}
+	public Optional<ToDoModel> task(Long id) {
+		if(id == null) {
+			throw new NullPointerException("Id Incorreto");
+		}
+		return repToDo.findById(id);
+	}
+	
+	
+	
+	
 	public ToDoModel atualizaTask(ToDoModel toDo) {
 		if(toDo.getId() == null) {
 			throw new NullPointerException("O id não pode ser nulo!");
@@ -35,14 +45,6 @@ public class ToDoService {
 		toDo2.setTask(toDo.getTask());
 		toDo2.setDescricao(toDo.getDescricao());
 		repToDo.save(toDo2);
-		
-		
-		
-		
-		
-		
-		
-		
 		return toDo2;
 		
 	}

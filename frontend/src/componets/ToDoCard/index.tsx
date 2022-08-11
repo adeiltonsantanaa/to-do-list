@@ -4,7 +4,7 @@ import ModalEditar from '../Modais/ModalEditar';
 import BtnExcluir from '../Modais/ModalExcluir';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { toDo } from '../../models/toDO';
+import { toDo } from '../../models/toDo';
 
 function ToDoCard() {
 
@@ -12,7 +12,7 @@ function ToDoCard() {
 
     useEffect(() => {
         axios.get('http://localhost:8080/to-do/tasks')
-            .then(res => {setToDo(res.data)})
+            .then(res => { setToDo(res.data) })
             .catch(err => console.log(err));
     }, []);
 
@@ -41,6 +41,9 @@ function ToDoCard() {
                                 <td className="show992">{toDo.descricao}</td>
                                 <td>
                                     <div className="to-do-red-btn-container">
+                                        <ModalDescricao />
+                                        <ModalEditar />
+                                        <BtnExcluir />
                                     </div>
                                 </td>
                             </tr>
