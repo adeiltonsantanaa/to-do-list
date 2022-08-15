@@ -12,7 +12,8 @@ type Props = {
   Desc: string;
 }
 
-function Example({Id ,Task, Desc}: Props) {
+
+function ModalEditar({Id ,Task, Desc}: Props) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -21,11 +22,12 @@ function Example({Id ,Task, Desc}: Props) {
   const [task, setTask] = useState(Task);
   const [desc, setDesc] = useState(Desc);
 
-  function atualizar() {
-    axios.put(`http://localhost:8080/to-do/atualizar/${Id}`, {Task: task, Desc: desc})
-      .then(res => { console.log(res) })
-      .catch(err => console.log(err));
-      window.location.reload();
+  function atualizarTask() {
+    axios.put(`http://localhost:8080/to-do/atualizar/${Id}`, {
+      task: task,
+      desc: desc
+    }).then(res => { console.log(res) }).catch(err => console.log(err));
+    window.location.reload();
   }
 
   return (
@@ -43,9 +45,10 @@ function Example({Id ,Task, Desc}: Props) {
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Task</Form.Label>
               <Form.Control
-                type="textarea"
+                type="text"
                 autoFocus
-                value={Task}
+                value={task}
+                onChange={(e) => setTask(e.target.value)}
               />
             </Form.Group>
             <Form.Group
@@ -53,9 +56,11 @@ function Example({Id ,Task, Desc}: Props) {
               controlId="exampleForm.ControlTextarea1"
             >
               <Form.Label>Descrição</Form.Label>
-              <Form.Control 
-              as="textarea" 
-              rows={3}
+              <Form.Control
+                type="textarea"
+                autoFocus
+                value={desc}
+                onChange={(e) => setTask(e.target.value)}
               />
             </Form.Group>
           </Form>
@@ -64,7 +69,7 @@ function Example({Id ,Task, Desc}: Props) {
           <Button variant="secondary" onClick={handleClose}>
             fechar
           </Button>
-          <Button variant="primary" onClick={atualizar}>
+          <Button variant="primary" onClick={atualizarTask}>
             Atualizar
           </Button>
         </Modal.Footer>
@@ -72,4 +77,4 @@ function Example({Id ,Task, Desc}: Props) {
     </>
   );
 }
-export default Example;
+export default ModalEditar;

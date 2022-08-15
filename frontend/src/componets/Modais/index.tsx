@@ -3,33 +3,29 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
 
-type Props = {
-  Desc: string;
-  Task: string;
-}
+function ModalErro() {
 
-function ModalDescricao({ Desc, Task }: Props) {
-
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
+  function recarregar() {
+    window.location.reload();
+  }
 
   return (
     <>
-      <Button id='btnAbrirModal' variant="info" size="sm" onClick={handleShow}>
-        <img src="https://img.icons8.com/ios-glyphs/30/000000/visible--v1.png" />
-      </Button>
-
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>{Task}</Modal.Title>
+          <Modal.Title>Erro :(</Modal.Title>
         </Modal.Header>
-            <Modal.Body>{Desc}</Modal.Body>
+            <Modal.Body>Infelizmente não conseguimos nos conectar com nossa base de dados.</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Fechar
+          </Button>
+          <Button variant="primary" onClick={recarregar}>
+            Tentar novamente
           </Button>
         </Modal.Footer>
       </Modal>
@@ -37,4 +33,4 @@ function ModalDescricao({ Desc, Task }: Props) {
   );
 }
 
-export default ModalDescricao;
+export default ModalErro;
