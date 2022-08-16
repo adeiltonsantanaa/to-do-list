@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import { BASE_URL } from '../../../util/url';
 
 
 
@@ -20,12 +21,12 @@ function ModalEditar({Id ,Task, Desc}: Props) {
   const handleShow = () => setShow(true);
 
   const [task, setTask] = useState(Task);
-  const [desc, setDesc] = useState(Desc);
+  const [descricao, setDesc] = useState(Desc);
 
   function atualizarTask() {
-    axios.put(`http://localhost:8080/to-do/atualizar/${Id}`, {
+    axios.put(`${BASE_URL}/atualizar/${Id}`, {
       task: task,
-      desc: desc
+      descricao: descricao
     }).then(res => { console.log(res) }).catch(err => console.log(err));
     window.location.reload();
   }
@@ -59,8 +60,8 @@ function ModalEditar({Id ,Task, Desc}: Props) {
               <Form.Control
                 type="textarea"
                 autoFocus
-                value={desc}
-                onChange={(e) => setTask(e.target.value)}
+                value={descricao}
+                onChange={(e) => setDesc(e.target.value)}
               />
             </Form.Group>
           </Form>

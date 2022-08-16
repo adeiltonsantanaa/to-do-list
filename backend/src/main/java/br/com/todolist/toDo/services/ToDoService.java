@@ -49,11 +49,9 @@ public class ToDoService {
 		ToDoModel toDo2 = atualizar.get();
 		toDo2.setTask(toDo.getTask());
 		toDo2.setDescricao(toDo.getDescricao());
-		System.out.println(toDo.getTask());
-		System.out.println(toDo.getDescricao());
-	//	repToDo.save(toDo2);
-	//	String mensagem = "Task atualizada com sucesso: " + toDo2;
-	//	mail.sendMail(mensagem);
+		repToDo.save(toDo2);
+		String mensagem = "Task atualizada com sucesso: " + toDo2;
+		mail.sendMail(mensagem);
 		return toDo2;
 		
 	}

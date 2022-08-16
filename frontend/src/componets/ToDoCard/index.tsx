@@ -39,7 +39,7 @@ function ToDoCard() {
                     </tr>
                 </thead>
                 <tbody>
-                    {/*toDo.length == 0 ? <ModalErro /> :*/ toDo.map(toDo => {
+                    {toDo.length == 0 ? <ModalErro /> : toDo.map(toDo => {
                         return (
                             <tr key={toDo.id}>
                                 <td className='show576'>{toDo.id}</td>
