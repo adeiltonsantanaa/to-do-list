@@ -10,6 +10,16 @@
     margin-bottom: 20px;
 }
 
+.to-do-div-title-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.to-do-button-title {
+    margin-right: 20px;
+}
+
 .to-do-form-control-container {
     margin-bottom: 16px;
     max-width: 300px;
